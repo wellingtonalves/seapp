@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('client', [\App\Http\Controllers\ClientController::class, 'create']);
+Route::post('client', [\App\Http\Controllers\ClientController::class, 'store']);
+Route::get('client', [\App\Http\Controllers\ClientController::class, 'show']);
+Route::put('client/{id}', [\App\Http\Controllers\ClientController::class, 'update']);

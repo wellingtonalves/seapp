@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class ClientTest extends TestCase
 {
-    public function testClientCreateSuccess()
+    public function testClientCreate()
     {
         $data = Client::factory()->make();
         $request = $this->post(env('APP_URL') . '/api/client', $data->toArray());
@@ -23,5 +23,14 @@ class ClientTest extends TestCase
         $request = $this->post(env('APP_URL') . '/api/client', $data);
         $this->assertEquals(422, $request->status());
         $this->assertDatabaseMissing('clients', ['email' => $data['email']]);
+    }
+
+    public function testClientUpdate()
+    {
+        $data = Client::factory()->create()->toArray();
+        $data['name'] = 'teste123';
+        $request = $this->put(env('APP_URL') . '/api/client/'. $data['id'], $data);
+        $this->assertEquals(200, $request->status());
+        $this->assertDatabaseHas('clients', ['email' => $data['email'], 'name' => 'teste123']);
     }
 }

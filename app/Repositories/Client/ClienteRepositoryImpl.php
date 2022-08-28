@@ -15,6 +15,6 @@ class ClienteRepositoryImpl implements IClientRepository
 
     public function update($id, $data)
     {
-        return true;
+        return Client::query()->findOrFail($id)->update($data);
     }
 }
