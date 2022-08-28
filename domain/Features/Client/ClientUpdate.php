@@ -2,12 +2,12 @@
 
 namespace Domain\Features\Client;
 
-use App\Http\Requests\CreateClientRequest;
+use App\Http\Requests\ClientUpdateRequest;
 use Exception;
 use Domain\Repositories\IClientRepository;
 use Illuminate\Support\Facades\Log;
 
-class CreateClient
+class ClientUpdate
 {
 
     /**
@@ -21,18 +21,19 @@ class CreateClient
     }
 
     /**
-     * @param CreateClientRequest $request
+     * @param int $id
+     * @param ClientUpdateRequest $request
      * @return string
      * @throws Exception
      */
-    public function create(CreateClientRequest $request): string
+    public function update(int $id, ClientUpdateRequest $request): string
     {
         try {
-            $this->repository->create($request->all());
-            return 'Cliente criado com sucesso';
+            $this->repository->update($id, $request->all());
+            return 'Cliente atualizado com sucesso';
         } catch (Exception $exception) {
             Log::error($exception);
-            throw new Exception('Erro ao criar o Cliente');
+            throw new Exception('Erro ao atualizar o Cliente');
         }
     }
 }

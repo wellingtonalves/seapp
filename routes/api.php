@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\RecordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('client', [\App\Http\Controllers\ClientController::class, 'store']);
-Route::get('client', [\App\Http\Controllers\ClientController::class, 'show']);
-Route::put('client/{id}', [\App\Http\Controllers\ClientController::class, 'update']);
+Route::post('client', [ClientController::class, 'store']);
+Route::get('client', [ClientController::class, 'show']);
+Route::put('client/{id}', [ClientController::class, 'update']);
+
+Route::apiResource('records', RecordController::class);
