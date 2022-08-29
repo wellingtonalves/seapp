@@ -43,4 +43,20 @@ interface IRecordRepository
      * @return bool
      */
     public function destroy(int $id): bool;
+
+    /**
+     * Update Record Quantity
+     * @param int $id
+     * @param int $quantity
+     * @return bool
+     */
+    public function updateQuantity(int $id, int $quantity): bool;
+
+    /**
+     * Check Record Quantity Available
+     * @param int $id
+     * @param int $orderQuantity
+     * @return bool
+     */
+    public function checkQuantityAvailable(int $id, int $orderQuantity): bool;
 }
