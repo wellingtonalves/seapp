@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RecordController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ Route::get('client', [ClientController::class, 'show']);
 Route::put('client/{id}', [ClientController::class, 'update']);
 
 Route::apiResource('records', RecordController::class);
+Route::post('orders', [OrderController::class, 'store']);

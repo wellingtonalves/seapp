@@ -64,4 +64,28 @@ class RecordRepositoryImpl implements IRecordRepository
     {
         return Record::query()->findOrFail($id)->delete();
     }
+
+    /**
+     * Update Order Quantity
+     * @param int $id
+     * @param int $quantity
+     * @return bool
+     */
+    public function updateQuantity(int $id, int $quantity): bool
+    {
+        $record = Record::query()->findOrFail($id);
+        return $record->decrement('quantity', $quantity);
+    }
+
+    /**
+     * Check Record Quantity Available
+     * @param int $id
+     * @param int $orderQuantity
+     * @return bool
+     */
+    public function checkQuantityAvailable(int $id, int $orderQuantity): bool
+    {
+        $record = Record::query()->findOrFail($id);
+        return $record->quantity > 0 && $record->quantity > $orderQuantity;
+    }
 }
