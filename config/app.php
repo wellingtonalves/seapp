@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        \App\Providers\CustomResponseProvider::class,
         /*
          * Application Service Providers...
          */
